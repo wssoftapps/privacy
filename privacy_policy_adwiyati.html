@@ -19,79 +19,243 @@
     a  { color: #0D9E91; }
     .last-updated { color: #888; font-size: 0.9em; }
     hr { border: none; border-top: 1px solid #eee; margin: 30px 0; }
+
+    /* Language switcher buttons */
+    .lang-switcher {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 30px;
+    }
+    .lang-btn {
+      padding: 8px 20px;
+      border: 2px solid #0D9E91;
+      background: white;
+      color: #0D9E91;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 0.95em;
+      font-weight: bold;
+    }
+    .lang-btn.active {
+      background: #0D9E91;
+      color: white;
+    }
+
+    /* Language sections */
+    .lang-section { display: none; }
+    .lang-section.visible { display: block; }
+
+    /* Arabic RTL */
+    .rtl {
+      direction: rtl;
+      text-align: right;
+    }
   </style>
 </head>
 <body>
 
-  <h1>Privacy Policy</h1>
-  <p class="last-updated">Last updated: March 28, 2026</p>
-  <p>This Privacy Policy explains how <strong>Adwiyati – Medicine Reminder</strong> ("the app"), developed by <strong>WS SoftApps</strong>, handles your information.</p>
+  <!-- Language Switcher -->
+  <div class="lang-switcher">
+    <button class="lang-btn active" onclick="switchLang('en')">English</button>
+    <button class="lang-btn" onclick="switchLang('ar')">العربية</button>
+    <button class="lang-btn" onclick="switchLang('fr')">Français</button>
+  </div>
 
-  <hr />
+  <!-- ===================== ENGLISH ===================== -->
+  <div id="lang-en" class="lang-section visible">
+    <h1>Privacy Policy</h1>
+    <p class="last-updated">Last updated: March 28, 2026</p>
+    <p>This Privacy Policy explains how <strong>Adwiyati – Medicine Reminder</strong>, developed by <strong>WS SoftApps</strong>, handles your information.</p>
+    <hr />
 
-  <h2>1. What the App Does</h2>
-  <p>Adwiyati is a medicine reminder and scheduling utility app. It helps you track medicines, set reminders, and check medicine safety using AI. It is <strong>not a medical device</strong> and does not diagnose, treat, or replace professional medical advice.</p>
+    <h2>1. What the App Does</h2>
+    <p>Adwiyati is a medicine reminder and scheduling utility app. It helps you track medicines, set reminders, and check medicine safety using AI. It is <strong>not a medical device</strong> and does not diagnose, treat, or replace professional medical advice.</p>
+    <hr />
 
-  <hr />
+    <h2>2. Data Stored on Your Device</h2>
+    <p>All your medicine data is stored <strong>locally on your device only</strong>:</p>
+    <ul>
+      <li>Medicine names, dosages, and schedules</li>
+      <li>Photos of medicine boxes (taken with your camera)</li>
+      <li>Dose history and reminder logs</li>
+    </ul>
+    <p>This data is <strong>never uploaded to any server</strong> and is never shared with third parties.</p>
+    <hr />
 
-  <h2>2. Data Stored on Your Device</h2>
-  <p>All your medicine data is stored <strong>locally on your device only</strong>:</p>
-  <ul>
-    <li>Medicine names, dosages, and schedules</li>
-    <li>Photos of medicine boxes (taken with your camera)</li>
-    <li>Dose history and reminder logs</li>
-  </ul>
-  <p>This data is <strong>never uploaded to any server</strong> and is never shared with third parties.</p>
+    <h2>3. Camera Permission</h2>
+    <p>The app requests access to your camera so you can take a photo of a medicine box. The photo is analyzed by AI to automatically fill in the medicine name and details. Photos are saved only on your device and are never sent to any server.</p>
+    <hr />
 
-  <hr />
+    <h2>4. AI Safety Checker (Gemini AI)</h2>
+    <p>When you use the "Ask Me" feature, only the <strong>medicine name or your typed question</strong> is sent to Google's Gemini AI service. No personal information, photos, or health history is included.</p>
+    <p>Google's Gemini AI is governed by <a href="https://policies.google.com/privacy" target="_blank">Google's Privacy Policy</a>.</p>
+    <hr />
 
-  <h2>3. Camera Permission</h2>
-  <p>The app requests access to your camera so you can take a photo of a medicine box. The photo is analyzed by AI to automatically fill in the medicine name and details. Photos are saved only on your device.</p>
+    <h2>5. Crash Reports (Firebase Crashlytics)</h2>
+    <p>If the app crashes, a technical error report is sent to the developer via Firebase Crashlytics. These reports contain only technical information (device type, Android version, error details) — <strong>no medicine data or personal information</strong>.</p>
+    <hr />
 
-  <hr />
+    <h2>6. Analytics (Firebase Analytics)</h2>
+    <p>The app uses Firebase Analytics to collect anonymous usage data (e.g., which screens are visited). No personal or health data is collected.</p>
+    <hr />
 
-  <h2>4. AI Safety Checker (Gemini AI)</h2>
-  <p>When you use the "Ask Me" feature to check medicine safety, only the <strong>medicine name or your typed question</strong> is sent to Google's Gemini AI service. No personal information, photos, or health history is included in these requests.</p>
-  <p>Google's Gemini AI is governed by <a href="https://policies.google.com/privacy" target="_blank">Google's Privacy Policy</a>.</p>
+    <h2>7. Notifications & Alarms</h2>
+    <p>The app schedules local reminders and notifications on your device. No notification content is transmitted externally.</p>
+    <hr />
 
-  <hr />
+    <h2>8. Family Alerts (WhatsApp / SMS)</h2>
+    <p>If you choose to send a family alert for a missed dose, the app opens WhatsApp or SMS with a pre-written message through your own app. The developer does not receive or store any of this information.</p>
+    <hr />
 
-  <h2>5. Crash Reports (Firebase Crashlytics)</h2>
-  <p>If the app crashes, an automatic technical error report is sent to the developer via <strong>Firebase Crashlytics</strong> (by Google). These reports contain only technical information (device type, Android version, error details) — <strong>no medicine data or personal information is included</strong>.</p>
+    <h2>9. Children's Privacy</h2>
+    <p>This app is not directed at children under 13. We do not knowingly collect any personal information from children.</p>
+    <hr />
 
-  <hr />
+    <h2>10. Changes to This Policy</h2>
+    <p>We may update this Privacy Policy from time to time. Any changes will be reflected on this page with an updated date.</p>
+    <hr />
 
-  <h2>6. Analytics (Firebase Analytics)</h2>
-  <p>The app uses Firebase Analytics to collect anonymous usage data (e.g., which screens are visited, how often the app is opened). This helps improve the app. No personal or health data is collected.</p>
+    <h2>11. Contact Us</h2>
+    <p>If you have any questions about this Privacy Policy, please contact us at:</p>
+    <p><a href="mailto:wssoftapps@gmail.com">wssoftapps@gmail.com</a></p>
+    <hr />
+    <p style="text-align:center; color:#aaa; font-size:0.85em;">© 2026 WS SoftApps. All rights reserved.</p>
+  </div>
 
-  <hr />
+  <!-- ===================== ARABIC ===================== -->
+  <div id="lang-ar" class="lang-section rtl">
+    <h1>سياسة الخصوصية</h1>
+    <p class="last-updated">آخر تحديث: 28 مارس 2026</p>
+    <p>توضح سياسة الخصوصية هذه كيفية تعامل تطبيق <strong>أدويتي – منبّه الأدوية</strong>، من تطوير <strong>WS SoftApps</strong>، مع معلوماتك.</p>
+    <hr />
 
-  <h2>7. Notifications & Alarms</h2>
-  <p>The app schedules local reminders and notifications on your device. These are processed entirely on-device and no notification content is transmitted externally.</p>
+    <h2>١. ما الذي يفعله التطبيق</h2>
+    <p>أدويتي هو تطبيق تذكير بالأدوية وجدولتها. يساعدك على تتبع الأدوية وضبط التذكيرات والتحقق من سلامة الأدوية بالذكاء الاصطناعي. إنه <strong>ليس جهازاً طبياً</strong> ولا يشخّص أو يعالج أو يحل محل المشورة الطبية المتخصصة.</p>
+    <hr />
 
-  <hr />
+    <h2>٢. البيانات المخزّنة على جهازك</h2>
+    <p>جميع بيانات أدويتك مخزّنة <strong>محلياً على جهازك فقط</strong>:</p>
+    <ul>
+      <li>أسماء الأدوية والجرعات والمواعيد</li>
+      <li>صور علب الأدوية (مأخوذة بكاميرتك)</li>
+      <li>سجل الجرعات والتذكيرات</li>
+    </ul>
+    <p>هذه البيانات <strong>لا تُرفع إلى أي خادم</strong> ولا تُشارك مع أي طرف ثالث.</p>
+    <hr />
 
-  <h2>8. Family Alerts (WhatsApp / SMS)</h2>
-  <p>If you choose to send a family alert for a missed dose, the app opens WhatsApp or SMS with a pre-written message. This is done through your own WhatsApp/SMS app — the developer does not receive or store any of this information.</p>
+    <h2>٣. إذن الكاميرا</h2>
+    <p>يطلب التطبيق الوصول إلى كاميرتك لتتمكن من تصوير علبة الدواء. تُحلَّل الصورة بالذكاء الاصطناعي لملء اسم الدواء وتفاصيله تلقائياً. تُحفظ الصور على جهازك فقط ولا تُرسل إلى أي خادم.</p>
+    <hr />
 
-  <hr />
+    <h2>٤. فاحص السلامة بالذكاء الاصطناعي (Gemini AI)</h2>
+    <p>عند استخدام ميزة "اسألني"، يُرسَل فقط <strong>اسم الدواء أو سؤالك المكتوب</strong> إلى خدمة Gemini AI من Google. لا تُرسَل أي معلومات شخصية أو صور أو سجلات صحية.</p>
+    <p>يخضع Gemini AI من Google لـ <a href="https://policies.google.com/privacy" target="_blank">سياسة خصوصية Google</a>.</p>
+    <hr />
 
-  <h2>9. Children's Privacy</h2>
-  <p>This app is not directed at children under 13. We do not knowingly collect any personal information from children.</p>
+    <h2>٥. تقارير الأعطال (Firebase Crashlytics)</h2>
+    <p>في حال توقف التطبيق عن العمل، يُرسَل تقرير تقني إلى المطور عبر Firebase Crashlytics. تحتوي هذه التقارير على معلومات تقنية فقط (نوع الجهاز، إصدار Android، تفاصيل الخطأ) — <strong>لا تتضمن بيانات أدوية أو معلومات شخصية</strong>.</p>
+    <hr />
 
-  <hr />
+    <h2>٦. التحليلات (Firebase Analytics)</h2>
+    <p>يستخدم التطبيق Firebase Analytics لجمع بيانات استخدام مجهولة الهوية (مثل الشاشات التي تمت زيارتها). لا تُجمع أي بيانات شخصية أو صحية.</p>
+    <hr />
 
-  <h2>10. Changes to This Policy</h2>
-  <p>We may update this Privacy Policy from time to time. Any changes will be reflected on this page with an updated date.</p>
+    <h2>٧. الإشعارات والتنبيهات</h2>
+    <p>يجدول التطبيق تذكيرات وإشعارات محلية على جهازك. لا يُرسَل أي محتوى من الإشعارات إلى الخارج.</p>
+    <hr />
 
-  <hr />
+    <h2>٨. تنبيهات العائلة (واتساب / رسائل SMS)</h2>
+    <p>إذا اخترت إرسال تنبيه للعائلة بشأن جرعة فائتة، يفتح التطبيق واتساب أو الرسائل برسالة جاهزة عبر تطبيقك. لا يتلقى المطور أو يخزّن أي من هذه المعلومات.</p>
+    <hr />
 
-  <h2>11. Contact Us</h2>
-  <p>If you have any questions about this Privacy Policy, please contact us at:</p>
-  <p><a href="mailto:wssoftapps@gmail.com">wssoftapps@gmail.com</a></p>
+    <h2>٩. خصوصية الأطفال</h2>
+    <p>هذا التطبيق غير موجّه للأطفال دون سن 13. لا نجمع أي معلومات شخصية من الأطفال عن قصد.</p>
+    <hr />
 
-  <hr />
-  <p style="text-align:center; color:#aaa; font-size:0.85em;">© 2026 WS SoftApps. All rights reserved.</p>
+    <h2>١٠. التغييرات على هذه السياسة</h2>
+    <p>قد نحدّث سياسة الخصوصية هذه من حين لآخر. سيُعكس أي تغيير على هذه الصفحة مع تاريخ التحديث.</p>
+    <hr />
+
+    <h2>١١. اتصل بنا</h2>
+    <p>إذا كانت لديك أي أسئلة حول سياسة الخصوصية، يرجى التواصل معنا على:</p>
+    <p><a href="mailto:wssoftapps@gmail.com">wssoftapps@gmail.com</a></p>
+    <hr />
+    <p style="text-align:center; color:#aaa; font-size:0.85em;">© 2026 WS SoftApps. جميع الحقوق محفوظة.</p>
+  </div>
+
+  <!-- ===================== FRENCH ===================== -->
+  <div id="lang-fr" class="lang-section">
+    <h1>Politique de Confidentialité</h1>
+    <p class="last-updated">Dernière mise à jour : 28 mars 2026</p>
+    <p>Cette politique de confidentialité explique comment <strong>Adwiyati – Rappel de Médicaments</strong>, développé par <strong>WS SoftApps</strong>, traite vos informations.</p>
+    <hr />
+
+    <h2>1. Ce que fait l'application</h2>
+    <p>Adwiyati est une application utilitaire de rappel et de planification de médicaments. Elle vous aide à suivre vos médicaments, définir des rappels et vérifier la sécurité des médicaments grâce à l'IA. Ce <strong>n'est pas un dispositif médical</strong> et ne diagnostique pas, ne traite pas et ne remplace pas un avis médical professionnel.</p>
+    <hr />
+
+    <h2>2. Données stockées sur votre appareil</h2>
+    <p>Toutes vos données de médicaments sont stockées <strong>localement sur votre appareil uniquement</strong> :</p>
+    <ul>
+      <li>Noms des médicaments, dosages et horaires</li>
+      <li>Photos des boîtes de médicaments (prises avec votre caméra)</li>
+      <li>Historique des doses et journaux de rappels</li>
+    </ul>
+    <p>Ces données ne sont <strong>jamais téléchargées sur un serveur</strong> et ne sont jamais partagées avec des tiers.</p>
+    <hr />
+
+    <h2>3. Permission de la caméra</h2>
+    <p>L'application demande l'accès à votre caméra pour que vous puissiez prendre une photo d'une boîte de médicament. La photo est analysée par l'IA pour remplir automatiquement le nom et les détails du médicament. Les photos sont enregistrées uniquement sur votre appareil et ne sont jamais envoyées à un serveur.</p>
+    <hr />
+
+    <h2>4. Vérificateur de sécurité IA (Gemini AI)</h2>
+    <p>Lorsque vous utilisez la fonctionnalité "Demandez-moi", seul le <strong>nom du médicament ou votre question écrite</strong> est envoyé au service Gemini AI de Google. Aucune information personnelle, photo ou historique de santé n'est inclus.</p>
+    <p>Gemini AI de Google est régi par la <a href="https://policies.google.com/privacy" target="_blank">Politique de confidentialité de Google</a>.</p>
+    <hr />
+
+    <h2>5. Rapports de plantage (Firebase Crashlytics)</h2>
+    <p>Si l'application plante, un rapport d'erreur technique est envoyé au développeur via Firebase Crashlytics. Ces rapports contiennent uniquement des informations techniques (type d'appareil, version Android, détails de l'erreur) — <strong>aucune donnée de médicament ni information personnelle</strong>.</p>
+    <hr />
+
+    <h2>6. Analytique (Firebase Analytics)</h2>
+    <p>L'application utilise Firebase Analytics pour collecter des données d'utilisation anonymes (par exemple, les écrans visités). Aucune donnée personnelle ou de santé n'est collectée.</p>
+    <hr />
+
+    <h2>7. Notifications et alarmes</h2>
+    <p>L'application planifie des rappels et notifications locaux sur votre appareil. Aucun contenu de notification n'est transmis à l'extérieur.</p>
+    <hr />
+
+    <h2>8. Alertes familiales (WhatsApp / SMS)</h2>
+    <p>Si vous choisissez d'envoyer une alerte familiale pour une dose manquée, l'application ouvre WhatsApp ou SMS avec un message prédéfini via votre propre application. Le développeur ne reçoit ni ne stocke aucune de ces informations.</p>
+    <hr />
+
+    <h2>9. Confidentialité des enfants</h2>
+    <p>Cette application n'est pas destinée aux enfants de moins de 13 ans. Nous ne collectons pas sciemment d'informations personnelles auprès des enfants.</p>
+    <hr />
+
+    <h2>10. Modifications de cette politique</h2>
+    <p>Nous pouvons mettre à jour cette politique de confidentialité de temps en temps. Tout changement sera reflété sur cette page avec une date de mise à jour.</p>
+    <hr />
+
+    <h2>11. Contactez-nous</h2>
+    <p>Si vous avez des questions concernant cette politique de confidentialité, veuillez nous contacter à :</p>
+    <p><a href="mailto:wssoftapps@gmail.com">wssoftapps@gmail.com</a></p>
+    <hr />
+    <p style="text-align:center; color:#aaa; font-size:0.85em;">© 2026 WS SoftApps. Tous droits réservés.</p>
+  </div>
+
+  <script>
+    function switchLang(lang) {
+      // Hide all sections
+      document.querySelectorAll('.lang-section').forEach(el => el.classList.remove('visible'));
+      // Deactivate all buttons
+      document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+      // Show selected section
+      document.getElementById('lang-' + lang).classList.add('visible');
+      // Activate selected button
+      event.target.classList.add('active');
+    }
+  </script>
 
 </body>
 </html>
