@@ -80,16 +80,21 @@
       <li>Photos of medicine boxes (taken with your camera)</li>
       <li>Dose history and reminder logs</li>
     </ul>
-    <p>This data is <strong>never uploaded to any server</strong> and is never shared with third parties.</p>
+    <p>Your medicine schedule, dose history, and reminder logs are stored <strong>locally on your device only</strong> and are never shared with third parties. When you use AI features, only the relevant data (medicine name, question, or photo) is transmitted — see Section 4 below.</p>
     <hr />
 
     <h2>3. Camera Permission</h2>
-    <p>The app requests access to your camera so you can take a photo of a medicine box. The photo is analyzed by AI to automatically fill in the medicine name and details. Photos are saved only on your device and are never sent to any server.</p>
+    <p>The app requests access to your camera so you can take a photo of a medicine box. When you use the Photo Recognition feature, the photo is sent to a secure Firebase Cloud Functions server (operated by Google) which forwards it to Gemini AI for processing. The photo is used only to extract the medicine name and details — it is <strong>not stored</strong> on any server after processing.</p>
     <hr />
 
-    <h2>4. AI Safety Checker (Gemini AI)</h2>
-    <p>When you use the "Ask Me" feature, only the <strong>medicine name or your typed question</strong> is sent to Google's Gemini AI service. No personal information, photos, or health history is included.</p>
-    <p>Google's Gemini AI is governed by <a href="https://policies.google.com/privacy" target="_blank">Google's Privacy Policy</a>.</p>
+    <h2>4. AI Features (Gemini AI via Firebase)</h2>
+    <p>The app has two AI features that send data to Google's servers for processing:</p>
+    <ul>
+      <li><strong>Ask Me:</strong> Your typed question and medicine name are sent for safety analysis.</li>
+      <li><strong>Photo Recognition:</strong> Your medicine box photo is sent to identify the medicine name and details.</li>
+    </ul>
+    <p>All AI requests pass through a <strong>secure Firebase Cloud Functions proxy</strong> (operated by Google). Data is processed in real time and <strong>not stored</strong> on the server. No personal information or health history is included.</p>
+    <p>Google's services are governed by <a href="https://policies.google.com/privacy" target="_blank">Google's Privacy Policy</a>.</p>
     <hr />
 
     <h2>5. Crash Reports (Firebase Crashlytics)</h2>
@@ -141,16 +146,21 @@
       <li>صور علب الأدوية (مأخوذة بكاميرتك)</li>
       <li>سجل الجرعات والتذكيرات</li>
     </ul>
-    <p>هذه البيانات <strong>لا تُرفع إلى أي خادم</strong> ولا تُشارك مع أي طرف ثالث.</p>
+    <p>يُخزَّن جدول أدويتك وسجل الجرعات والتذكيرات <strong>محلياً على جهازك فقط</strong> ولا تُشارك مع أي طرف ثالث. عند استخدام ميزات الذكاء الاصطناعي، تُرسَل فقط البيانات ذات الصلة (اسم الدواء، السؤال، أو الصورة) — انظر القسم ٤ أدناه.</p>
     <hr />
 
     <h2>٣. إذن الكاميرا</h2>
-    <p>يطلب التطبيق الوصول إلى كاميرتك لتتمكن من تصوير علبة الدواء. تُحلَّل الصورة بالذكاء الاصطناعي لملء اسم الدواء وتفاصيله تلقائياً. تُحفظ الصور على جهازك فقط ولا تُرسل إلى أي خادم.</p>
+    <p>يطلب التطبيق الوصول إلى كاميرتك لتتمكن من تصوير علبة الدواء. عند استخدام ميزة التعرف على الدواء بالصورة، تُرسَل الصورة إلى خادم Firebase Cloud Functions آمن (تشغّله Google) الذي يُحيلها إلى Gemini AI للمعالجة. تُستخدم الصورة فقط لاستخراج اسم الدواء وتفاصيله — <strong>ولا تُخزَّن</strong> على أي خادم بعد المعالجة.</p>
     <hr />
 
-    <h2>٤. فاحص السلامة بالذكاء الاصطناعي (Gemini AI)</h2>
-    <p>عند استخدام ميزة "اسألني"، يُرسَل فقط <strong>اسم الدواء أو سؤالك المكتوب</strong> إلى خدمة Gemini AI من Google. لا تُرسَل أي معلومات شخصية أو صور أو سجلات صحية.</p>
-    <p>يخضع Gemini AI من Google لـ <a href="https://policies.google.com/privacy" target="_blank">سياسة خصوصية Google</a>.</p>
+    <h2>٤. ميزات الذكاء الاصطناعي (Gemini AI عبر Firebase)</h2>
+    <p>يحتوي التطبيق على ميزتين للذكاء الاصطناعي تُرسلان بيانات إلى خوادم Google للمعالجة:</p>
+    <ul>
+      <li><strong>اسألني:</strong> يُرسَل سؤالك المكتوب واسم الدواء لتحليل السلامة.</li>
+      <li><strong>التعرف بالصورة:</strong> تُرسَل صورة علبة الدواء للتعرف على اسم الدواء وتفاصيله.</li>
+    </ul>
+    <p>تمر جميع طلبات الذكاء الاصطناعي عبر <strong>وسيط Firebase Cloud Functions آمن</strong> (تشغّله Google). تُعالَج البيانات في الوقت الفعلي و<strong>لا تُخزَّن</strong> على الخادم. لا تُرسَل أي معلومات شخصية أو سجلات صحية.</p>
+    <p>تخضع خدمات Google لـ <a href="https://policies.google.com/privacy" target="_blank">سياسة خصوصية Google</a>.</p>
     <hr />
 
     <h2>٥. تقارير الأعطال (Firebase Crashlytics)</h2>
@@ -202,16 +212,21 @@
       <li>Photos des boîtes de médicaments (prises avec votre caméra)</li>
       <li>Historique des doses et journaux de rappels</li>
     </ul>
-    <p>Ces données ne sont <strong>jamais téléchargées sur un serveur</strong> et ne sont jamais partagées avec des tiers.</p>
+    <p>Votre planning de médicaments, l'historique des doses et les journaux de rappels sont stockés <strong>localement sur votre appareil uniquement</strong> et ne sont jamais partagés avec des tiers. Lorsque vous utilisez les fonctionnalités IA, seules les données pertinentes (nom du médicament, question ou photo) sont transmises — voir Section 4 ci-dessous.</p>
     <hr />
 
     <h2>3. Permission de la caméra</h2>
-    <p>L'application demande l'accès à votre caméra pour que vous puissiez prendre une photo d'une boîte de médicament. La photo est analysée par l'IA pour remplir automatiquement le nom et les détails du médicament. Les photos sont enregistrées uniquement sur votre appareil et ne sont jamais envoyées à un serveur.</p>
+    <p>L'application demande l'accès à votre caméra pour que vous puissiez prendre une photo d'une boîte de médicament. Lorsque vous utilisez la fonctionnalité de reconnaissance photo, la photo est envoyée à un serveur Firebase Cloud Functions sécurisé (exploité par Google) qui la transmet à Gemini AI pour traitement. La photo est utilisée uniquement pour extraire le nom et les détails du médicament — elle n'est <strong>pas stockée</strong> sur un serveur après traitement.</p>
     <hr />
 
-    <h2>4. Vérificateur de sécurité IA (Gemini AI)</h2>
-    <p>Lorsque vous utilisez la fonctionnalité "Demandez-moi", seul le <strong>nom du médicament ou votre question écrite</strong> est envoyé au service Gemini AI de Google. Aucune information personnelle, photo ou historique de santé n'est inclus.</p>
-    <p>Gemini AI de Google est régi par la <a href="https://policies.google.com/privacy" target="_blank">Politique de confidentialité de Google</a>.</p>
+    <h2>4. Fonctionnalités IA (Gemini AI via Firebase)</h2>
+    <p>L'application dispose de deux fonctionnalités IA qui envoient des données aux serveurs de Google pour traitement :</p>
+    <ul>
+      <li><strong>Demandez-moi :</strong> Votre question et le nom du médicament sont envoyés pour analyse de sécurité.</li>
+      <li><strong>Reconnaissance photo :</strong> La photo de la boîte de médicament est envoyée pour identifier le nom et les détails du médicament.</li>
+    </ul>
+    <p>Toutes les requêtes IA passent par un <strong>proxy Firebase Cloud Functions sécurisé</strong> (exploité par Google). Les données sont traitées en temps réel et <strong>ne sont pas stockées</strong> sur le serveur. Aucune information personnelle ni historique de santé n'est inclus.</p>
+    <p>Les services de Google sont régis par la <a href="https://policies.google.com/privacy" target="_blank">Politique de confidentialité de Google</a>.</p>
     <hr />
 
     <h2>5. Rapports de plantage (Firebase Crashlytics)</h2>
