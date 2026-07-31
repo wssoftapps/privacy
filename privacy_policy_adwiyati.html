@@ -1,292 +1,477 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Privacy Policy – Adwiyati</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      max-width: 800px;
-      margin: 40px auto;
-      padding: 0 20px;
-      color: #333;
-      line-height: 1.7;
-    }
-    h1 { color: #0D9E91; }
-    h2 { color: #0D9E91; margin-top: 36px; }
-    p  { margin: 10px 0; }
-    a  { color: #0D9E91; }
-    .last-updated { color: #888; font-size: 0.9em; }
-    hr { border: none; border-top: 1px solid #eee; margin: 30px 0; }
-
-    /* Language switcher buttons */
-    .lang-switcher {
-      display: flex;
-      gap: 10px;
-      margin-bottom: 30px;
-    }
-    .lang-btn {
-      padding: 8px 20px;
-      border: 2px solid #0D9E91;
-      background: white;
-      color: #0D9E91;
-      border-radius: 20px;
-      cursor: pointer;
-      font-size: 0.95em;
-      font-weight: bold;
-    }
-    .lang-btn.active {
-      background: #0D9E91;
-      color: white;
-    }
-
-    /* Language sections */
-    .lang-section { display: none; }
-    .lang-section.visible { display: block; }
-
-    /* Arabic RTL */
-    .rtl {
-      direction: rtl;
-      text-align: right;
-      font-size: 1.1em;
-    }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Adwiyati — Privacy Policy</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    color: #14312f;
+    background: #f7f9f9;
+    line-height: 1.65;
+  }
+  /* Header + language buttons pinned as ONE block.
+     Sticking them separately would mean giving the buttons a top offset equal to
+     the header's height - and that height changes the moment the title wraps on a
+     narrow phone, which would leave a gap or an overlap. One wrapper, no maths. */
+  .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+  header {
+    background: #0d6d63;
+    color: #fff;
+    /* Tighter than before: this bar is now permanently on screen, so every pixel
+       it takes is a pixel of policy the reader cannot see. */
+    padding: 16px 20px 14px;
+    text-align: center;
+  }
+  header h1 { margin: 0 0 2px; font-size: 19px; }
+  header p { margin: 0; opacity: .85; font-size: 12px; }
+  .langs {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 16px;
+    background: #fff;
+    border-bottom: 1px solid #e3ecea;
+    flex-wrap: wrap;
+  }
+  .langs button {
+    font: inherit;
+    font-size: 14px;
+    padding: 8px 18px;
+    border-radius: 999px;
+    border: 1px solid #cfe0dd;
+    background: #fff;
+    color: #0d6d63;
+    cursor: pointer;
+  }
+  .langs button[aria-selected="true"] {
+    background: #0d6d63;
+    color: #fff;
+    border-color: #0d6d63;
+  }
+  main { max-width: 720px; margin: 0 auto; padding: 20px 18px 60px; }
+  section[hidden] { display: none; }
+  h2 {
+    font-size: 17px;
+    margin: 28px 0 8px;
+    color: #0d6d63;
+  }
+  .updated {
+    font-size: 13px;
+    color: #5b7c78;
+    margin-top: 4px;
+  }
+  .card {
+    background: #fff;
+    border: 1px solid #e3ecea;
+    border-radius: 12px;
+    padding: 16px 18px;
+    margin-top: 16px;
+  }
+  .highlight {
+    background: #e8f4f2;
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin-top: 16px;
+    font-size: 15px;
+  }
+  ul { padding-inline-start: 22px; margin: 8px 0; }
+  li { margin: 4px 0; }
+  a { color: #0d6d63; }
+  [dir="rtl"] { text-align: right; }
+  footer {
+    text-align: center;
+    font-size: 13px;
+    color: #5b7c78;
+    padding: 24px 16px 40px;
+  }
+  @media (prefers-color-scheme: dark) {
+    body { background: #10201f; color: #e6f2f0; }
+    .langs { background: #172b2a; border-bottom-color: #21403d; }
+    .langs button { background: #172b2a; border-color: #26443f; color: #7fd4c6; }
+    .langs button[aria-selected="true"] { background: #0d6d63; color: #fff; }
+    .card { background: #172b2a; border-color: #21403d; }
+    .highlight { background: #1e3a37; }
+    h2 { color: #7fd4c6; }
+    .updated, footer { color: #8fb0ab; }
+    a { color: #7fd4c6; }
+  }
+</style>
 </head>
 <body>
 
-  <!-- Language Switcher -->
-  <div class="lang-switcher">
-    <button class="lang-btn active" onclick="switchLang('en')">English</button>
-    <button class="lang-btn" onclick="switchLang('ar')">العربية</button>
-    <button class="lang-btn" onclick="switchLang('fr')">Français</button>
+<div class="topbar">
+  <header>
+    <h1>Adwiyati — أدويتي</h1>
+    <p>Privacy Policy · سياسة الخصوصية · Politique de confidentialité</p>
+  </header>
+
+  <nav class="langs" role="tablist">
+    <button role="tab" data-lang="en" aria-selected="true">English</button>
+    <button role="tab" data-lang="ar" aria-selected="false">العربية</button>
+    <button role="tab" data-lang="fr" aria-selected="false">Français</button>
+  </nav>
+</div>
+
+<main>
+
+<!-- ══════════════════ ENGLISH ══════════════════ -->
+<section id="en" dir="ltr">
+  <h2 style="margin-top:14px">Privacy Policy</h2>
+  <p class="updated">Last updated: 31 July 2026</p>
+
+  <div class="highlight">
+    <strong>The short version.</strong> Your medicines, schedules and saved photos stay on your
+    phone. When you use the AI assistant, what you ask is sent to Google Gemini to write the
+    answer and is not kept afterwards. We never ask for your name, email or phone number.
   </div>
 
-  <!-- ===================== ENGLISH ===================== -->
-  <div id="lang-en" class="lang-section visible">
-    <h1>Privacy Policy</h1>
-    <p class="last-updated">Last updated: April 1, 2026</p>
-    <p>This Privacy Policy explains how <strong>Adwiyati – Medicine Reminder</strong>, developed by <strong>WS SoftApps</strong>, handles your information.</p>
-    <hr />
-
-    <h2>1. What the App Does</h2>
-    <p>Adwiyati is a medicine reminder and scheduling utility app. It helps you track medicines, set reminders, and check medicine safety using AI. It is <strong>not a medical device</strong> and does not diagnose, treat, or replace professional medical advice.</p>
-    <hr />
-
-    <h2>2. Data Stored on Your Device</h2>
-    <p>All your medicine data is stored <strong>locally on your device only</strong>:</p>
+  <div class="card">
+    <h2>1. What stays on your phone</h2>
+    <p>Everything you enter into Adwiyati is stored on your device only:</p>
     <ul>
-      <li>Medicine names, dosages, and schedules</li>
-      <li>Photos of medicine boxes (taken with your camera)</li>
-      <li>Dose history and reminder logs</li>
+      <li>Medicine names, dosages and schedules</li>
+      <li>Photos you save to a medicine</li>
+      <li>Your dose history</li>
+      <li>Your language and app settings</li>
     </ul>
-    <p>Your medicine schedule, dose history, and reminder logs are stored <strong>locally on your device only</strong> and are never shared with third parties. When you use AI features, only the relevant data (medicine name, question, or photo) is transmitted — see Section 4 below.</p>
-    <hr />
-
-    <h2>3. Camera Permission</h2>
-    <p>The app requests access to your camera so you can take a photo of a medicine box. When you use the Photo Recognition feature, the photo is sent to a secure Firebase Cloud Functions server (operated by Google) which forwards it to Gemini AI for processing. The photo is used only to extract the medicine name and details — it is <strong>not stored</strong> on any server after processing.</p>
-    <hr />
-
-    <h2>4. AI Features (Gemini AI via Firebase)</h2>
-    <p>The app has two AI features that send data to Google's servers for processing:</p>
-    <ul>
-      <li><strong>Ask Me:</strong> Your typed question and medicine name are sent for safety analysis.</li>
-      <li><strong>Photo Recognition:</strong> Your medicine box photo is sent to identify the medicine name and details.</li>
-    </ul>
-    <p>All AI requests pass through a <strong>secure Firebase Cloud Functions proxy</strong> (operated by Google). Data is processed in real time and <strong>not stored</strong> on the server. No personal information or health history is included.</p>
-    <ul>
-      <li>Data transmitted for AI processing is <strong>ephemeral</strong> and is deleted immediately after the response is generated.</li>
-      <li>All data transmitted to AI services is <strong>encrypted in transit</strong> using HTTPS/TLS protocols.</li>
-      <li>The developer does <strong>not store, see, or collect</strong> the content of your AI queries.</li>
-    </ul>
-    <p>Google's services are governed by <a href="https://policies.google.com/privacy" target="_blank">Google's Privacy Policy</a>.</p>
-    <hr />
-
-    <h2>5. Crash Reports (Firebase Crashlytics)</h2>
-    <p>If the app crashes, a technical error report is sent to the developer via Firebase Crashlytics. These reports contain only technical information (device type, Android version, error details) — <strong>no medicine data or personal information</strong>.</p>
-    <hr />
-
-    <h2>6. Analytics (Firebase Analytics)</h2>
-    <p>The app uses Firebase Analytics to collect anonymous usage data (e.g., which screens are visited). No personal or health data is collected.</p>
-    <hr />
-
-    <h2>7. Notifications & Alarms</h2>
-    <p>The app schedules local reminders and notifications on your device. No notification content is transmitted externally.</p>
-    <hr />
-
-    <h2>8. Family Alerts (WhatsApp / SMS)</h2>
-    <p>If you choose to send a family alert for a missed dose, the app opens WhatsApp or SMS with a pre-written message through your own app. The developer does not receive or store any of this information.</p>
-    <hr />
-
-    <h2>9. Children's Privacy</h2>
-    <p>This app is not directed at children under 13. We do not knowingly collect any personal information from children.</p>
-    <hr />
-
-    <h2>10. Changes to This Policy</h2>
-    <p>We may update this Privacy Policy from time to time. Any changes will be reflected on this page with an updated date.</p>
-    <hr />
-
-    <h2>11. Contact Us</h2>
-    <p>If you have any questions about this Privacy Policy, please contact us at:</p>
-    <p><a href="mailto:wssoftapps@gmail.com">wssoftapps@gmail.com</a></p>
-    <hr />
-    <p style="text-align:center; color:#aaa; font-size:0.85em;">© 2026 WS SoftApps. All rights reserved.</p>
+    <p>We cannot see any of it. Uninstalling the app deletes it.</p>
   </div>
 
-  <!-- ===================== ARABIC ===================== -->
-  <div id="lang-ar" class="lang-section rtl">
-    <h1>سياسة الخصوصية</h1>
-    <p class="last-updated">آخر تحديث: 28 مارس 2026</p>
-    <p>توضح سياسة الخصوصية هذه كيفية تعامل تطبيق <strong>أدويتي – منبّه الأدوية</strong>، من تطوير <strong>WS SoftApps</strong>، مع معلوماتك.</p>
-    <hr />
+  <div class="card">
+    <h2>2. The AI assistant</h2>
+    <p>Adwiyati includes a chat assistant that answers questions about your medicines and about
+    using the app. It only works while you are using it.</p>
+    <p><strong>When you send a message, this is transmitted:</strong></p>
+    <ul>
+      <li>Your question</li>
+      <li>Any photos you attach (a medicine box or a prescription)</li>
+      <li>Your medicine names and doses, so the answer fits what you actually take</li>
+      <li>The recent messages of that conversation, so follow-up questions make sense</li>
+      <li>Your app language and an anonymous installation number</li>
+    </ul>
+    <p>This is sent to <strong>Google Gemini</strong>, which writes the answer and sends it back.
+    <strong>Google is the only AI provider we use.</strong> Nothing you send is stored on our
+    servers afterwards.</p>
+    <p>Google processes it under their own terms:
+    <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google Privacy Policy</a>.</p>
+  </div>
 
-    <h2>١. ما الذي يفعله التطبيق</h2>
-    <p>أدويتي هو تطبيق تذكير بالأدوية وجدولتها. يساعدك على تتبع الأدوية وضبط التذكيرات والتحقق من سلامة الأدوية بالذكاء الاصطناعي. إنه <strong>ليس جهازاً طبياً</strong> ولا يشخّص أو يعالج أو يحل محل المشورة الطبية المتخصصة.</p>
-    <hr />
+  <div class="card">
+    <h2>3. What we keep on our servers</h2>
+    <p>Only two small things, and neither contains health information:</p>
+    <ul>
+      <li><strong>An anonymous installation number</strong> — a random code created on your phone
+      the first time you use the assistant. It lets us stop one device from flooding the service,
+      and count how many phones use the assistant each month. It is not linked to you, and
+      uninstalling the app throws it away.</li>
+      <li><strong>Usage totals</strong> — how many questions were asked in a month, and how much
+      AI processing they used, so we can see what the service costs to run.</li>
+    </ul>
+  </div>
 
-    <h2>٢. البيانات المخزّنة على جهازك</h2>
-    <p>جميع بيانات أدويتك مخزّنة <strong>محلياً على جهازك فقط</strong>:</p>
+  <div class="card">
+    <h2>4. Reporting an answer</h2>
+    <p>Every AI answer has a small flag icon. If you report one, we store <strong>that answer</strong>,
+    the reason you chose, and any note you write, so we can look into it and improve the assistant.
+    Nothing else is attached — no photo, no medicine list.</p>
+  </div>
+
+  <div class="card">
+    <h2>5. No account, no personal details</h2>
+    <p>Adwiyati has no sign-up and no login. We never ask for your name, email address, phone
+    number or date of birth, and we do not have them.</p>
+  </div>
+
+  <div class="card">
+    <h2>6. Camera and photos</h2>
+    <p>The camera permission is used for one thing: photographing a medicine box or a prescription,
+    either to save it to a medicine or to ask the assistant about it. Photos you save stay on your
+    phone. Photos you send to the assistant go to Google Gemini for that one answer and are not
+    stored afterwards.</p>
+  </div>
+
+  <div class="card">
+    <h2>7. Crash reports and analytics</h2>
+    <p>If the app crashes, a technical error report is sent to the developer through Firebase
+    Crashlytics, so the problem can be fixed. Firebase Analytics records anonymous usage such as
+    which screens are opened. <strong>Neither contains your medicines or any health information.</strong></p>
+  </div>
+
+  <div class="card">
+    <h2>8. Children</h2>
+    <p>Adwiyati is intended for adults managing their own or a family member's medication. It is
+    not directed at children.</p>
+  </div>
+
+  <div class="card">
+    <h2>9. Not medical advice</h2>
+    <p>Adwiyati is a reminder and educational tool. Neither the app nor its AI assistant provides
+    medical diagnosis or treatment advice, and AI answers can be wrong. Always consult your doctor
+    or pharmacist before changing anything about your medication.</p>
+  </div>
+
+  <div class="card">
+    <h2>10. Changes and contact</h2>
+    <p>If this policy changes, the date at the top changes with it. Questions or requests:
+    <a href="mailto:wssoftapps@gmail.com">wssoftapps@gmail.com</a></p>
+  </div>
+</section>
+
+<!-- ══════════════════ ARABIC ══════════════════ -->
+<section id="ar" dir="rtl" hidden>
+  <h2 style="margin-top:14px">سياسة الخصوصية</h2>
+  <p class="updated">آخر تحديث: ٣١ تموز/يوليو ٢٠٢٦</p>
+
+  <div class="highlight">
+    <strong>باختصار.</strong> تبقى أدويتك ومواعيدك وصورك المحفوظة على هاتفك. عند استخدام المساعد
+    الذكي، يُرسل ما تسأل عنه إلى Google Gemini لكتابة الإجابة ولا يُحتفظ به بعد ذلك. ولا نطلب منك
+    أبداً اسمك أو بريدك الإلكتروني أو رقم هاتفك.
+  </div>
+
+  <div class="card">
+    <h2>١. ما يبقى على هاتفك</h2>
+    <p>كل ما تُدخله في أدويتي يُحفظ على جهازك فقط:</p>
     <ul>
       <li>أسماء الأدوية والجرعات والمواعيد</li>
-      <li>صور علب الأدوية (مأخوذة بكاميرتك)</li>
-      <li>سجل الجرعات والتذكيرات</li>
+      <li>الصور التي تحفظها مع الدواء</li>
+      <li>سجل الجرعات</li>
+      <li>لغتك وإعدادات التطبيق</li>
     </ul>
-    <p>يُخزَّن جدول أدويتك وسجل الجرعات والتذكيرات <strong>محلياً على جهازك فقط</strong> ولا تُشارك مع أي طرف ثالث. عند استخدام ميزات الذكاء الاصطناعي، تُرسَل فقط البيانات ذات الصلة (اسم الدواء، السؤال، أو الصورة) — انظر القسم ٤ أدناه.</p>
-    <hr />
-
-    <h2>٣. إذن الكاميرا</h2>
-    <p>يطلب التطبيق الوصول إلى كاميرتك لتتمكن من تصوير علبة الدواء. عند استخدام ميزة التعرف على الدواء بالصورة، تُرسَل الصورة إلى خادم Firebase Cloud Functions آمن (تشغّله Google) الذي يُحيلها إلى Gemini AI للمعالجة. تُستخدم الصورة فقط لاستخراج اسم الدواء وتفاصيله — <strong>ولا تُخزَّن</strong> على أي خادم بعد المعالجة.</p>
-    <hr />
-
-    <h2>٤. ميزات الذكاء الاصطناعي (Gemini AI عبر Firebase)</h2>
-    <p>يحتوي التطبيق على ميزتين للذكاء الاصطناعي تُرسلان بيانات إلى خوادم Google للمعالجة:</p>
-    <ul>
-      <li><strong>اسألني:</strong> يُرسَل سؤالك المكتوب واسم الدواء لتحليل السلامة.</li>
-      <li><strong>التعرف بالصورة:</strong> تُرسَل صورة علبة الدواء للتعرف على اسم الدواء وتفاصيله.</li>
-    </ul>
-    <p>تمر جميع طلبات الذكاء الاصطناعي عبر <strong>وسيط Firebase Cloud Functions آمن</strong> (تشغّله Google). تُعالَج البيانات في الوقت الفعلي و<strong>لا تُخزَّن</strong> على الخادم. لا تُرسَل أي معلومات شخصية أو سجلات صحية.</p>
-    <ul>
-      <li>البيانات المُرسَلة لمعالجة الذكاء الاصطناعي <strong>مؤقتة</strong> وتُحذف فوراً بعد توليد الرد.</li>
-      <li>جميع البيانات المُرسَلة إلى خدمات الذكاء الاصطناعي <strong>مشفّرة أثناء النقل</strong> باستخدام بروتوكولات HTTPS/TLS.</li>
-      <li>المطوّر <strong>لا يخزّن ولا يطّلع ولا يجمع</strong> محتوى استعلامات الذكاء الاصطناعي الخاصة بك.</li>
-    </ul>
-    <p>تخضع خدمات Google لـ <a href="https://policies.google.com/privacy" target="_blank">سياسة خصوصية Google</a>.</p>
-    <hr />
-
-    <h2>٥. تقارير الأعطال (Firebase Crashlytics)</h2>
-    <p>في حال توقف التطبيق عن العمل، يُرسَل تقرير تقني إلى المطور عبر Firebase Crashlytics. تحتوي هذه التقارير على معلومات تقنية فقط (نوع الجهاز، إصدار Android، تفاصيل الخطأ) — <strong>لا تتضمن بيانات أدوية أو معلومات شخصية</strong>.</p>
-    <hr />
-
-    <h2>٦. التحليلات (Firebase Analytics)</h2>
-    <p>يستخدم التطبيق Firebase Analytics لجمع بيانات استخدام مجهولة الهوية (مثل الشاشات التي تمت زيارتها). لا تُجمع أي بيانات شخصية أو صحية.</p>
-    <hr />
-
-    <h2>٧. الإشعارات والتنبيهات</h2>
-    <p>يجدول التطبيق تذكيرات وإشعارات محلية على جهازك. لا يُرسَل أي محتوى من الإشعارات إلى الخارج.</p>
-    <hr />
-
-    <h2>٨. تنبيهات العائلة (واتساب / رسائل SMS)</h2>
-    <p>إذا اخترت إرسال تنبيه للعائلة بشأن جرعة فائتة، يفتح التطبيق واتساب أو الرسائل برسالة جاهزة عبر تطبيقك. لا يتلقى المطور أو يخزّن أي من هذه المعلومات.</p>
-    <hr />
-
-    <h2>٩. خصوصية الأطفال</h2>
-    <p>هذا التطبيق غير موجّه للأطفال دون سن 13. لا نجمع أي معلومات شخصية من الأطفال عن قصد.</p>
-    <hr />
-
-    <h2>١٠. التغييرات على هذه السياسة</h2>
-    <p>قد نحدّث سياسة الخصوصية هذه من حين لآخر. سيُعكس أي تغيير على هذه الصفحة مع تاريخ التحديث.</p>
-    <hr />
-
-    <h2>١١. اتصل بنا</h2>
-    <p>إذا كانت لديك أي أسئلة حول سياسة الخصوصية، يرجى التواصل معنا على:</p>
-    <p><a href="mailto:wssoftapps@gmail.com">wssoftapps@gmail.com</a></p>
-    <hr />
-    <p style="text-align:center; color:#aaa; font-size:0.85em;">© 2026 WS SoftApps. جميع الحقوق محفوظة.</p>
+    <p>لا يمكننا الاطلاع على أي منها. وحذف التطبيق يحذفها.</p>
   </div>
 
-  <!-- ===================== FRENCH ===================== -->
-  <div id="lang-fr" class="lang-section">
-    <h1>Politique de Confidentialité</h1>
-    <p class="last-updated">Dernière mise à jour : 28 mars 2026</p>
-    <p>Cette politique de confidentialité explique comment <strong>Adwiyati – Rappel de Médicaments</strong>, développé par <strong>WS SoftApps</strong>, traite vos informations.</p>
-    <hr />
-
-    <h2>1. Ce que fait l'application</h2>
-    <p>Adwiyati est une application utilitaire de rappel et de planification de médicaments. Elle vous aide à suivre vos médicaments, définir des rappels et vérifier la sécurité des médicaments grâce à l'IA. Ce <strong>n'est pas un dispositif médical</strong> et ne diagnostique pas, ne traite pas et ne remplace pas un avis médical professionnel.</p>
-    <hr />
-
-    <h2>2. Données stockées sur votre appareil</h2>
-    <p>Toutes vos données de médicaments sont stockées <strong>localement sur votre appareil uniquement</strong> :</p>
+  <div class="card">
+    <h2>٢. المساعد الذكي</h2>
+    <p>يتضمن أدويتي مساعد محادثة يجيب عن أسئلتك حول أدويتك وحول استخدام التطبيق. ويعمل فقط أثناء
+    استخدامك له.</p>
+    <p><strong>عند إرسال رسالة، يُرسل ما يلي:</strong></p>
     <ul>
-      <li>Noms des médicaments, dosages et horaires</li>
-      <li>Photos des boîtes de médicaments (prises avec votre caméra)</li>
-      <li>Historique des doses et journaux de rappels</li>
+      <li>سؤالك</li>
+      <li>أي صور ترفقها (علبة دواء أو وصفة طبية)</li>
+      <li>أسماء أدويتك وجرعاتها، لتكون الإجابة مناسبة لما تتناوله فعلاً</li>
+      <li>الرسائل الأخيرة من تلك المحادثة، لتكون أسئلة المتابعة مفهومة</li>
+      <li>لغة التطبيق ورقم تثبيت مجهول</li>
     </ul>
-    <p>Votre planning de médicaments, l'historique des doses et les journaux de rappels sont stockés <strong>localement sur votre appareil uniquement</strong> et ne sont jamais partagés avec des tiers. Lorsque vous utilisez les fonctionnalités IA, seules les données pertinentes (nom du médicament, question ou photo) sont transmises — voir Section 4 ci-dessous.</p>
-    <hr />
-
-    <h2>3. Permission de la caméra</h2>
-    <p>L'application demande l'accès à votre caméra pour que vous puissiez prendre une photo d'une boîte de médicament. Lorsque vous utilisez la fonctionnalité de reconnaissance photo, la photo est envoyée à un serveur Firebase Cloud Functions sécurisé (exploité par Google) qui la transmet à Gemini AI pour traitement. La photo est utilisée uniquement pour extraire le nom et les détails du médicament — elle n'est <strong>pas stockée</strong> sur un serveur après traitement.</p>
-    <hr />
-
-    <h2>4. Fonctionnalités IA (Gemini AI via Firebase)</h2>
-    <p>L'application dispose de deux fonctionnalités IA qui envoient des données aux serveurs de Google pour traitement :</p>
-    <ul>
-      <li><strong>Demandez-moi :</strong> Votre question et le nom du médicament sont envoyés pour analyse de sécurité.</li>
-      <li><strong>Reconnaissance photo :</strong> La photo de la boîte de médicament est envoyée pour identifier le nom et les détails du médicament.</li>
-    </ul>
-    <p>Toutes les requêtes IA passent par un <strong>proxy Firebase Cloud Functions sécurisé</strong> (exploité par Google). Les données sont traitées en temps réel et <strong>ne sont pas stockées</strong> sur le serveur. Aucune information personnelle ni historique de santé n'est inclus.</p>
-    <ul>
-      <li>Les données transmises pour le traitement IA sont <strong>éphémères</strong> et supprimées immédiatement après la génération de la réponse.</li>
-      <li>Toutes les données transmises aux services IA sont <strong>chiffrées en transit</strong> via les protocoles HTTPS/TLS.</li>
-      <li>Le développeur ne <strong>stocke pas, ne consulte pas et ne collecte pas</strong> le contenu de vos requêtes IA.</li>
-    </ul>
-    <p>Les services de Google sont régis par la <a href="https://policies.google.com/privacy" target="_blank">Politique de confidentialité de Google</a>.</p>
-    <hr />
-
-    <h2>5. Rapports de plantage (Firebase Crashlytics)</h2>
-    <p>Si l'application plante, un rapport d'erreur technique est envoyé au développeur via Firebase Crashlytics. Ces rapports contiennent uniquement des informations techniques (type d'appareil, version Android, détails de l'erreur) — <strong>aucune donnée de médicament ni information personnelle</strong>.</p>
-    <hr />
-
-    <h2>6. Analytique (Firebase Analytics)</h2>
-    <p>L'application utilise Firebase Analytics pour collecter des données d'utilisation anonymes (par exemple, les écrans visités). Aucune donnée personnelle ou de santé n'est collectée.</p>
-    <hr />
-
-    <h2>7. Notifications et alarmes</h2>
-    <p>L'application planifie des rappels et notifications locaux sur votre appareil. Aucun contenu de notification n'est transmis à l'extérieur.</p>
-    <hr />
-
-    <h2>8. Alertes familiales (WhatsApp / SMS)</h2>
-    <p>Si vous choisissez d'envoyer une alerte familiale pour une dose manquée, l'application ouvre WhatsApp ou SMS avec un message prédéfini via votre propre application. Le développeur ne reçoit ni ne stocke aucune de ces informations.</p>
-    <hr />
-
-    <h2>9. Confidentialité des enfants</h2>
-    <p>Cette application n'est pas destinée aux enfants de moins de 13 ans. Nous ne collectons pas sciemment d'informations personnelles auprès des enfants.</p>
-    <hr />
-
-    <h2>10. Modifications de cette politique</h2>
-    <p>Nous pouvons mettre à jour cette politique de confidentialité de temps en temps. Tout changement sera reflété sur cette page avec une date de mise à jour.</p>
-    <hr />
-
-    <h2>11. Contactez-nous</h2>
-    <p>Si vous avez des questions concernant cette politique de confidentialité, veuillez nous contacter à :</p>
-    <p><a href="mailto:wssoftapps@gmail.com">wssoftapps@gmail.com</a></p>
-    <hr />
-    <p style="text-align:center; color:#aaa; font-size:0.85em;">© 2026 WS SoftApps. Tous droits réservés.</p>
+    <p>يُرسل ذلك إلى <strong>Google Gemini</strong>، الذي يكتب الإجابة ويعيدها.
+    <strong>Google هي مزوّد الذكاء الاصطناعي الوحيد الذي نستخدمه.</strong> ولا يُخزَّن أي شيء
+    ترسله على خوادمنا بعد ذلك.</p>
+    <p>تعالج Google هذه البيانات وفق شروطها الخاصة:
+    <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">سياسة خصوصية Google</a>.</p>
   </div>
 
-  <script>
-    function switchLang(lang) {
-      // Hide all sections
-      document.querySelectorAll('.lang-section').forEach(el => el.classList.remove('visible'));
-      // Deactivate all buttons
-      document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
-      // Show selected section
-      document.getElementById('lang-' + lang).classList.add('visible');
-      // Activate selected button
-      event.target.classList.add('active');
+  <div class="card">
+    <h2>٣. ما نحتفظ به على خوادمنا</h2>
+    <p>أمران صغيران فقط، ولا يحتوي أي منهما على معلومات صحية:</p>
+    <ul>
+      <li><strong>رقم تثبيت مجهول</strong> — رمز عشوائي يُنشأ على هاتفك أول مرة تستخدم فيها
+      المساعد. يتيح لنا منع جهاز واحد من إغراق الخدمة، وحساب عدد الهواتف التي تستخدم المساعد كل
+      شهر. وهو غير مرتبط بك، وحذف التطبيق يتخلص منه.</li>
+      <li><strong>إجماليات الاستخدام</strong> — عدد الأسئلة المطروحة في الشهر ومقدار المعالجة
+      المستخدمة، لنعرف تكلفة تشغيل الخدمة.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>٤. الإبلاغ عن إجابة</h2>
+    <p>تحمل كل إجابة أيقونة إبلاغ صغيرة. إذا أبلغت عن إجابة، نحفظ <strong>تلك الإجابة</strong>
+    والسبب الذي اخترته وأي ملاحظة تكتبها، لكي ننظر في الأمر ونحسّن المساعد. ولا يُرفق أي شيء
+    آخر — لا صورة ولا قائمة أدوية.</p>
+  </div>
+
+  <div class="card">
+    <h2>٥. لا حساب ولا بيانات شخصية</h2>
+    <p>لا يوجد في أدويتي تسجيل ولا تسجيل دخول. لا نطلب أبداً اسمك أو بريدك الإلكتروني أو رقم هاتفك
+    أو تاريخ ميلادك، ولا نملكها.</p>
+  </div>
+
+  <div class="card">
+    <h2>٦. الكاميرا والصور</h2>
+    <p>يُستخدم إذن الكاميرا لغرض واحد: تصوير علبة دواء أو وصفة طبية، إما لحفظها مع الدواء أو
+    لسؤال المساعد عنها. الصور التي تحفظها تبقى على هاتفك. أما الصور التي ترسلها إلى المساعد
+    فتذهب إلى Google Gemini من أجل تلك الإجابة فقط ولا تُخزَّن بعدها.</p>
+  </div>
+
+  <div class="card">
+    <h2>٧. تقارير الأعطال والتحليلات</h2>
+    <p>في حال تعطّل التطبيق، يُرسل تقرير تقني إلى المطوّر عبر Firebase Crashlytics ليتم إصلاح
+    المشكلة. ويسجّل Firebase Analytics استخداماً مجهولاً مثل الشاشات التي تُفتح.
+    <strong>ولا يتضمن أي منهما أدويتك أو أي معلومات صحية.</strong></p>
+  </div>
+
+  <div class="card">
+    <h2>٨. الأطفال</h2>
+    <p>أدويتي مخصص للبالغين الذين يديرون أدويتهم أو أدوية أحد أفراد الأسرة. وهو غير موجّه للأطفال.</p>
+  </div>
+
+  <div class="card">
+    <h2>٩. ليس نصيحة طبية</h2>
+    <p>أدويتي أداة تذكير ومرجع تعليمي. لا يقدّم التطبيق ولا مساعده الذكي تشخيصاً طبياً أو نصيحة
+    علاجية، وقد تكون إجابات الذكاء الاصطناعي خاطئة. استشر دائماً طبيبك أو الصيدلي قبل تغيير أي
+    شيء يتعلق بأدويتك.</p>
+  </div>
+
+  <div class="card">
+    <h2>١٠. التغييرات والتواصل</h2>
+    <p>إذا تغيّرت هذه السياسة، يتغيّر التاريخ في الأعلى معها. للأسئلة أو الطلبات:
+    <a href="mailto:wssoftapps@gmail.com">wssoftapps@gmail.com</a></p>
+  </div>
+</section>
+
+<!-- ══════════════════ FRENCH ══════════════════ -->
+<section id="fr" dir="ltr" hidden>
+  <h2 style="margin-top:14px">Politique de confidentialité</h2>
+  <p class="updated">Dernière mise à jour : 31 juillet 2026</p>
+
+  <div class="highlight">
+    <strong>En bref.</strong> Vos médicaments, vos horaires et vos photos enregistrées restent sur
+    votre téléphone. Lorsque vous utilisez l'assistant IA, ce que vous demandez est envoyé à Google
+    Gemini pour rédiger la réponse et n'est pas conservé ensuite. Nous ne demandons jamais votre
+    nom, votre e-mail ni votre numéro de téléphone.
+  </div>
+
+  <div class="card">
+    <h2>1. Ce qui reste sur votre téléphone</h2>
+    <p>Tout ce que vous saisissez dans Adwiyati est stocké uniquement sur votre appareil :</p>
+    <ul>
+      <li>Noms des médicaments, doses et horaires</li>
+      <li>Les photos que vous enregistrez avec un médicament</li>
+      <li>Votre historique de prises</li>
+      <li>Votre langue et vos réglages</li>
+    </ul>
+    <p>Nous n'y avons aucun accès. Désinstaller l'application les supprime.</p>
+  </div>
+
+  <div class="card">
+    <h2>2. L'assistant IA</h2>
+    <p>Adwiyati comprend un assistant de discussion qui répond à vos questions sur vos médicaments
+    et sur l'utilisation de l'application. Il ne fonctionne que pendant que vous l'utilisez.</p>
+    <p><strong>Lorsque vous envoyez un message, ceci est transmis :</strong></p>
+    <ul>
+      <li>Votre question</li>
+      <li>Les photos que vous joignez (une boîte de médicament ou une ordonnance)</li>
+      <li>Les noms et doses de vos médicaments, pour que la réponse corresponde à ce que vous prenez</li>
+      <li>Les messages récents de cette conversation, pour que les questions de suivi aient du sens</li>
+      <li>La langue de l'application et un numéro d'installation anonyme</li>
+    </ul>
+    <p>Ces données sont envoyées à <strong>Google Gemini</strong>, qui rédige la réponse et la renvoie.
+    <strong>Google est le seul fournisseur d'IA que nous utilisons.</strong> Rien de ce que vous
+    envoyez n'est ensuite stocké sur nos serveurs.</p>
+    <p>Google les traite selon ses propres conditions :
+    <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Politique de confidentialité de Google</a>.</p>
+  </div>
+
+  <div class="card">
+    <h2>3. Ce que nous conservons sur nos serveurs</h2>
+    <p>Seulement deux petites choses, et aucune ne contient d'information de santé :</p>
+    <ul>
+      <li><strong>Un numéro d'installation anonyme</strong> — un code aléatoire créé sur votre
+      téléphone la première fois que vous utilisez l'assistant. Il nous permet d'empêcher un appareil
+      de saturer le service et de compter combien de téléphones utilisent l'assistant chaque mois.
+      Il n'est pas lié à vous, et désinstaller l'application le supprime.</li>
+      <li><strong>Des totaux d'utilisation</strong> — combien de questions ont été posées dans le
+      mois et quelle quantité de traitement IA elles ont demandée, afin de connaître le coût du
+      service.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>4. Signaler une réponse</h2>
+    <p>Chaque réponse de l'IA porte une petite icône de signalement. Si vous en signalez une, nous
+    conservons <strong>cette réponse</strong>, le motif choisi et la note que vous écrivez, afin de
+    l'examiner et d'améliorer l'assistant. Rien d'autre n'est joint — ni photo, ni liste de
+    médicaments.</p>
+  </div>
+
+  <div class="card">
+    <h2>5. Aucun compte, aucune donnée personnelle</h2>
+    <p>Adwiyati n'a ni inscription ni connexion. Nous ne demandons jamais votre nom, votre adresse
+    e-mail, votre numéro de téléphone ni votre date de naissance, et nous ne les possédons pas.</p>
+  </div>
+
+  <div class="card">
+    <h2>6. Caméra et photos</h2>
+    <p>L'autorisation caméra sert à une seule chose : photographier une boîte de médicament ou une
+    ordonnance, soit pour l'enregistrer avec un médicament, soit pour interroger l'assistant. Les
+    photos que vous enregistrez restent sur votre téléphone. Celles que vous envoyez à l'assistant
+    vont à Google Gemini pour cette réponse uniquement et ne sont pas conservées ensuite.</p>
+  </div>
+
+  <div class="card">
+    <h2>7. Rapports de plantage et statistiques</h2>
+    <p>Si l'application plante, un rapport d'erreur technique est envoyé au développeur via Firebase
+    Crashlytics, afin que le problème soit corrigé. Firebase Analytics enregistre une utilisation
+    anonyme, comme les écrans ouverts. <strong>Ni l'un ni l'autre ne contient vos médicaments ou
+    une information de santé.</strong></p>
+  </div>
+
+  <div class="card">
+    <h2>8. Enfants</h2>
+    <p>Adwiyati est destinée aux adultes qui gèrent leurs propres médicaments ou ceux d'un proche.
+    Elle ne s'adresse pas aux enfants.</p>
+  </div>
+
+  <div class="card">
+    <h2>9. Pas un avis médical</h2>
+    <p>Adwiyati est un outil de rappel et de référence éducative. Ni l'application ni son assistant
+    IA ne fournissent de diagnostic ou de conseil de traitement, et les réponses de l'IA peuvent
+    être fausses. Consultez toujours votre médecin ou votre pharmacien avant de modifier quoi que
+    ce soit à votre traitement.</p>
+  </div>
+
+  <div class="card">
+    <h2>10. Modifications et contact</h2>
+    <p>Si cette politique change, la date en haut change avec elle. Questions ou demandes :
+    <a href="mailto:wssoftapps@gmail.com">wssoftapps@gmail.com</a></p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  WS SoftApps · Adwiyati<br>
+  <a href="mailto:wssoftapps@gmail.com">wssoftapps@gmail.com</a>
+</footer>
+
+<script>
+  // Language switcher. Plain JavaScript, no libraries - this page must keep
+  // working for years without anything to maintain or update.
+  var buttons = document.querySelectorAll('.langs button');
+  var sections = { en: document.getElementById('en'),
+                   ar: document.getElementById('ar'),
+                   fr: document.getElementById('fr') };
+
+  function show(lang) {
+    for (var key in sections) {
+      sections[key].hidden = (key !== lang);
     }
-  </script>
+    buttons.forEach(function (b) {
+      b.setAttribute('aria-selected', String(b.dataset.lang === lang));
+    });
+    // Set the page language and direction so screen readers and the browser
+    // both treat Arabic as right-to-left.
+    document.documentElement.lang = lang;
+    document.documentElement.dir = (lang === 'ar') ? 'rtl' : 'ltr';
+    try { location.hash = lang; } catch (e) {}
+  }
+
+  buttons.forEach(function (b) {
+    b.addEventListener('click', function () { show(b.dataset.lang); });
+  });
+
+  // Open in the language named in the address (…privacy_policy_adwiyati.html#ar)
+  // so the app can link straight to the user's own language later.
+  var startLang = (location.hash || '').replace('#', '');
+  show(sections[startLang] ? startLang : 'en');
+</script>
 
 </body>
 </html>
